@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clima en tu Ciudad</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Consulta el Clima</h1>
+        <form method="post" action="/clima">
+            <input type="text" name="ciudad" placeholder="Escribe una ciudad..." required>
+            <button type="submit">Buscar</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% elif weather %}
+            <h2>{{ weather.nombre }}</h2>
+            <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="icon">
+            <p class="temp">{{ weather.temp }} °C</p>
+            <p>{{ weather.desc }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
